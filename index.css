@@ -1,0 +1,20 @@
+table{
+    width: 100%;
+    margin: 0 auto;
+    border-left: none;
+
+
+}
+
+tr:nth-child(even){
+    background: rgb(212, 211, 211);
+}
+th{
+    background-color: black;
+    height: 30px;
+    color: white;
+}
+tr{
+    height: 50px;
+
+}
