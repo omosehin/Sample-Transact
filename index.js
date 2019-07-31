@@ -1,17 +1,16 @@
-const baseUrl = " http://5d2c2f2b8c90070014972225.mockapi.io/api/v2/";
+const baseUrl = "http://5d2c2f2b8c90070014972225.mockapi.io/api/v2/news/";
 // const baseUrl = require('./baseUrl')
-
 let errorId = document.getElementById("error");
 let errorMsg = document.getElementById("errorMsg");
 let Prev = document.getElementById("Prev");
 let Next = document.getElementById("Next");
-
+let arrData = null;
 let pageNumber = 1;
 const pageLimit = 10;
 
 let getData = false;
 const tableHeader = [
-  { Title: "", Url: "1654", Avatar: "Parco", Action: "", View: "" }
+  { No: "", Title: "", Url: "1654", Avatar: "Parco", Action: "", View: "" }
 ];
 
 function generateTableHead(table, data) {
@@ -33,19 +32,22 @@ function generateTable(table, data) {
       if (key === "avatar") {
         let img = document.createElement("img");
         img.src = element[key];
+        console.log(img.src);
         cellContent = img;
       } else if (key === "buttonDelete") {
         let buttonDel = document.createElement("button");
         let buttontextDel = document.createTextNode("delete");
         buttonDel.appendChild(buttontextDel);
         buttonDel.setAttribute("class", "delButton");
+        clickDelete(buttonDel, element.id);
+
         cellContent = buttonDel;
       } else if (key === "buttonview") {
         let buttonVie = document.createElement("button");
         let buttontextDel = document.createTextNode("View");
         buttonVie.appendChild(buttontextDel);
         buttonVie.setAttribute("class", "viewButton");
-        buttonVie.classList.add("warrior");
+        clickView(buttonVie, element.id);
         cellContent = buttonVie;
       } else {
         cellContent = document.createTextNode(element[key]);
@@ -56,18 +58,27 @@ function generateTable(table, data) {
   }
 }
 
+function clickView(data, key) {
+  data.addEventListener("click", function() {
+    location.href = "view_Comment.html";
+    localStorage.setItem("id", key);
+  });
+}
+
 let table = document.querySelector("table");
 
 let data = Object.keys(tableHeader[0]);
 generateTableHead(table, data);
 
 const fetchSearchTopStories = (pageNumber, pageLimit = 0) => {
-  fetch(baseUrl + `/news?page= ${pageNumber}&limit=${pageLimit}`)
+  fetch(baseUrl + `?page= ${pageNumber}&limit=${pageLimit}`)
     .then(res => res.json())
     .then(data => {
+      arrData = data;
       let dataArr = data.map(
-        ({ title, url, avatar, buttonDelete, buttonview }) => {
+        ({ id, title, url, avatar, buttonDelete, buttonview }) => {
           return {
+            id,
             title,
             url,
             avatar,
@@ -107,3 +118,21 @@ Prev.addEventListener("click", () => {
   fetchSearchTopStories(pageNumber--, 10);
 });
 
+function clickDelete(data, key) {
+  localStorage.setItem("id", key);
+  data.addEventListener("click", function() {
+    localStorage.setItem("id", key);
+    let id = localStorage.getItem("id");
+    fetch(baseUrl + `${id}`, {
+      method: "DELETE"
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        document.location.reload(true);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  });
+}

@@ -1,0 +1,23 @@
+.viewAvatar{
+    width: 40%;
+    height: 250px;
+    margin: 0 auto;
+    background: purple;
+    margin-top:100px; 
+    }
+.title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+    
+}
+.avatarCls{
+    text-align: center;
+}
+.centeredItem{
+    text-align: center;
+}
