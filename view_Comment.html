@@ -8,18 +8,23 @@
     <title>view_Comment</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="view_Comment.css">
 </head>
 
-<body>
+<body class="news">
     <div>
+        <div class="newsTitle">
+            <p>NEWS</p>
+        </div>
         <div class="viewAvatar">
 
             <div class="centeredItem">
                 <div class="avatarCls">
 
                 </div>
+            </div>
+            <div class="news_Comment newsTitle">
+                <p>New's Comments</p>
             </div>
             <div class="title">
                 <p class="avatarTitle">TITLE</p>
@@ -33,19 +38,33 @@
                 <p class="avatarTitle">DATE CREATED</p>
                 <p class="created"></p>
             </div>
-            <div class="centeredItem">
+            <!-- <div class="centeredItem">
                 <button id="edit_comment" class="paginationButton">Edit Comment</button>
-            </div>
+            </div> -->
         </div>
 
-            <ul id="subCommentAvatar"></ul>
+        <ul id="subCommentAvatar"></ul>
+
+        <div class="newsTitle">
+            <p class="formHeadingTitle">Add Comments to News</p>
+        </div>
         <div class="form">
             <form id="addComment">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name">
-                <label for="comment">Add Comment</label>
-                <textarea name="comments" id="comment" cols="30" rows="10"></textarea>
-                <button type="submit">Add</button>
+                <div class="inputDiv">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name">
+                </div>
+                <div class="inputDiv">
+                    <label for="comment">Add Comment</label>
+                    <textarea name="comments" id="comment" cols="10" rows="5"></textarea>
+                </div>
+                <div class="inputDiv">
+                    <input type="file" name="file" id="upload" onChange="handleImageUpload()">
+                    <label for="fileupload"> Select an avatar to upload</label>
+                    <img id="display-image" src="" />
+
+                </div>
+                <button type="submit">Add Comment</button>
 
             </form>
         </div>

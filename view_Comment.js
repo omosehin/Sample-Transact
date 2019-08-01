@@ -6,7 +6,6 @@ let dateCreated = document.querySelector(".created");
 let editButton = document.getElementById("edit_comment");
 let formsy = document.querySelector("#addComment");
 
-
 // formsy.style.display='none'
 // document.forms.hero.heroName.focus();
 const form = document.forms["addComment"];
@@ -16,10 +15,28 @@ const onSubmit = e => {
   const addComment = {};
   addComment.comment = form.comment.value;
   addComment.name = form.name.value;
+  addComment.file = form.file.value;
   console.log(JSON.stringify(addComment));
+  submitwithApi(JSON.stringify(addComment));
   return addComment;
 };
+
 form.addEventListener("submit", onSubmit, false);
+
+const submitwithApi = data => {
+  let getNewsid = baseUrl + `${commentId}` + "/comments";
+  fetch(getNewsid, {
+    method: "POST",
+    body: data
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
 let id = localStorage.getItem("id");
 let getById = baseUrl + `/${id}`;
 fetch(getById)
@@ -36,7 +53,6 @@ function getData(data) {
   img.src = data.avatar;
   avatar.append(img);
   img.style.borderRadius = "50%";
-
   let mainTitle = data.title;
   title.textContent = mainTitle;
 
