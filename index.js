@@ -1,5 +1,4 @@
-const baseUrl = "http://5d2c2f2b8c90070014972225.mockapi.io/api/v2/news/";
-// const baseUrl = require('./baseUrl')
+
 let errorId = document.getElementById("error");
 let errorMsg = document.getElementById("errorMsg");
 let Prev = document.getElementById("Prev");
@@ -32,7 +31,6 @@ function generateTable(table, data) {
       if (key === "avatar") {
         let img = document.createElement("img");
         img.src = element[key];
-        console.log(img.src);
         cellContent = img;
       } else if (key === "buttonDelete") {
         let buttonDel = document.createElement("button");
@@ -49,7 +47,11 @@ function generateTable(table, data) {
         buttonVie.setAttribute("class", "viewButton");
         clickView(buttonVie, element.id);
         cellContent = buttonVie;
-      } else {
+      }
+      // else if(key === "buttonview" ){
+      //   cellContent.style.display="none";
+      // }
+      else {
         cellContent = document.createTextNode(element[key]);
       }
 
@@ -128,7 +130,6 @@ function clickDelete(data, key) {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         document.location.reload(true);
       })
       .catch(error => {

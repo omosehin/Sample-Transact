@@ -1,39 +1,60 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="view_Comment.css">
-    </head>
-    <body>
-        <div class="viewAvatar">
-            
-            <div class="centeredItem">
-                    <img src="" alt="avatar" class="avatarCls">
 
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>view_Comment</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="view_Comment.css">
+</head>
+
+<body>
+    <div>
+        <div class="viewAvatar">
+
+            <div class="centeredItem">
+                <div class="avatarCls">
+
+                </div>
             </div>
-                <div class="title">
-                    <p>TITLE</p>
-                    <p class="fetchTitle"></p>
-                </div>
-                <div class="title">
-                    <p>URL</p>
-                    <p class="url"></p>
-                </div>
-                <div class="title">
-                    <p>DATE CREATED</p>
-                    <p class="created"></p>
-                </div>
-                <div class="centeredItem">
-                    <button id="edit_comment">Edit Comment</button>
-                </div>
-        </div> 
-        <script src="view_Comment.js" async defer></script>
-    </body>
+            <div class="title">
+                <p class="avatarTitle">TITLE</p>
+                <p class="fetchTitle"></p>
+            </div>
+            <div class="title">
+                <p class="avatarTitle">URL</p>
+                <p class="url"></p>
+            </div>
+            <div class="title">
+                <p class="avatarTitle">DATE CREATED</p>
+                <p class="created"></p>
+            </div>
+            <div class="centeredItem">
+                <button id="edit_comment" class="paginationButton">Edit Comment</button>
+            </div>
+        </div>
+
+            <ul id="subCommentAvatar"></ul>
+        <div class="form">
+            <form id="addComment">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+                <label for="comment">Add Comment</label>
+                <textarea name="comments" id="comment" cols="30" rows="10"></textarea>
+                <button type="submit">Add</button>
+
+            </form>
+        </div>
+
+    </div>
+    <script src="baseUrl.js"></script>
+    <script src="view_Comment.js" async defer></script>
+    <script src="comments.js" async defer></script>
+
+</body>
+
 </html>

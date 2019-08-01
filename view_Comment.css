@@ -1,23 +1,86 @@
-.viewAvatar{
-    width: 40%;
-    height: 250px;
-    margin: 0 auto;
-    background: purple;
-    margin-top:100px; 
-    }
-.title{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: center;
-    color: white;
-    margin-left: 5px;
-    margin-right: 5px;
-    
+.viewAvatar {
+  width: 50%;
+  height: 400px;
+  margin: 0 auto;
+  margin-top: 100px;
+  padding: 20px;
+  background: #f6f6f6;
+  border-radius: 10px;
+  box-shadow: 0px -1px 1px 0px rgb(201, 199, 199);
 }
-.avatarCls{
-    text-align: center;
+.title {
+  text-align: center;
+  color: white;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: black;
 }
-.centeredItem{
-    text-align: center;
+#subCommentAvatar {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin-top: 100px;
+  justify-content: space-around;
+}
+
+.avatarTitle {
+  font-weight: bolder;
+}
+.avatarCls {
+  text-align: center;
+}
+.centeredItem {
+  text-align: center;
+}
+.paginationButton {
+  width: 150px;
+  height: 40px;
+  border: none;
+  font-size: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.paginationButton:hover {
+  background: black;
+  color: white;
+}
+
+.form {
+  width: 40%;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.subcard {
+  width: 20%;
+  height: 200px;
+  background: black;
+  position: absolute;
+  bottom: 0;
+}
+.name {
+  color: white;
+}
+.subComment {
+  color: white;
+}
+.deleteButton {
+  cursor: pointer;
+  color: red;
+  margin-right: 5px;
+}
+.deleteButton:hover {
+  text-decoration: underline;
+}
+.editButton {
+  cursor: pointer;
+  background: rgb(114, 113, 114);
+  color: rgb(255, 255, 255);
+  float: right;
+  padding: 5px;
+  width: 40px;
+  vertical-align: center;
 }
