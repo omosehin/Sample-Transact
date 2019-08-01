@@ -1,13 +1,16 @@
 let avatar = document.querySelector(".avatarCls");
 let title = document.querySelector(".fetchTitle");
+let errorMsg = document.getElementById("errorMsg");
 let name = document.querySelector(".name");
 let url = document.querySelector(".url");
 let dateCreated = document.querySelector(".created");
 let editButton = document.getElementById("edit_comment");
-let formsy = document.querySelector("#addComment");
-
-// formsy.style.display='none'
-// document.forms.hero.heroName.focus();
+let validateName = document.querySelector(".validateName");
+let goBack = document.querySelector("#goBack");
+// let submitButton = document.querySelector(button);
+goBack.addEventListener("click", () => {
+  location.href = "index.html";
+});
 const form = document.forms["addComment"];
 
 const onSubmit = e => {
@@ -16,7 +19,6 @@ const onSubmit = e => {
   addComment.comment = form.comment.value;
   addComment.name = form.name.value;
   addComment.file = form.file.value;
-  console.log(JSON.stringify(addComment));
   submitwithApi(JSON.stringify(addComment));
   return addComment;
 };
@@ -31,10 +33,12 @@ const submitwithApi = data => {
   })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
+      let text = document.createTextNode(data);
+      errorMsg.appendChild(text);
     })
     .catch(error => {
-      console.log(error);
+      let text = document.createTextNode(error);
+      errorMsg.appendChild(text);
     });
 };
 let id = localStorage.getItem("id");
@@ -44,9 +48,7 @@ fetch(getById)
   .then(data => {
     getData(data);
   })
-  .catch(error => {
-    console.log("I am error", error);
-  });
+  .catch(error => {});
 
 function getData(data) {
   let img = document.createElement("img");

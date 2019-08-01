@@ -13,6 +13,11 @@
 
 <body class="news">
     <div>
+        <div>
+            <button id="goBack">
+                GO-TO-NEWS
+            </button>
+        </div>
         <div class="newsTitle">
             <p>NEWS</p>
         </div>
@@ -44,7 +49,21 @@
         </div>
 
         <ul id="subCommentAvatar"></ul>
+        <div>
+            <div class="editCard">
 
+                <form id="editForm">
+                    <div class="inputDiv">
+                        <label for="edit">comment</label>
+                        <textarea name="edit" id="" cols="10" rows="5"></textarea>
+
+                    </div>
+                    <button type="submit" id="submitEdit">Submit</button>
+
+                </form>
+            </div>
+
+        </div>
         <div class="newsTitle">
             <p class="formHeadingTitle">Add Comments to News</p>
         </div>
@@ -52,27 +71,31 @@
             <form id="addComment">
                 <div class="inputDiv">
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name">
+                    <input type="text" name="name" id="name" placeholder="name" autofocus required>
                 </div>
+                <p class="validateName">Name is required</p>
                 <div class="inputDiv">
                     <label for="comment">Add Comment</label>
-                    <textarea name="comments" id="comment" cols="10" rows="5"></textarea>
+                    <textarea name="comments" id="comment" cols="10" rows="5" placeholder="comment" required></textarea>
                 </div>
+                <p class="validateComment">Field is required</p>
+
                 <div class="inputDiv">
                     <input type="file" name="file" id="upload" onChange="handleImageUpload()">
                     <label for="fileupload"> Select an avatar to upload</label>
                     <img id="display-image" src="" />
 
                 </div>
-                <button type="submit">Add Comment</button>
+                <button type="submit" id='submit'>Add Comment</button>
+                <p id="errorMsg"></p>
 
             </form>
         </div>
 
     </div>
     <script src="baseUrl.js"></script>
-    <script src="view_Comment.js" async defer></script>
-    <script src="comments.js" async defer></script>
+    <script src="view_Comment.js"></script>
+    <script src="comments.js"></script>
 
 </body>
 

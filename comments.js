@@ -1,5 +1,8 @@
 const ul = document.getElementById("subCommentAvatar");
-
+const editForm = document.forms["editForm"];
+const editCard = document.querySelector(".editCard");
+const submitEdit = document.querySelector("#submitEdit");
+let editCommentId = null;
 function createNode(element) {
   return document.createElement(element);
 }
@@ -36,7 +39,9 @@ const generateData = datas => {
     getCommentTodelete(data, span2);
     span3.textContent = "Edit";
     span3.classList.add("editButton");
-    getEditTodelete(data, span3)
+    editCommentId = data;
+    getEditTodelete(data, span3);
+
     append(li, img);
     append(li, nameParagraph);
     append(li, span);
@@ -54,7 +59,7 @@ function getCommentTodelete(data, span2) {
     })
       .then(res => res.json())
       .then(data => {
-        if(data){
+        if (data) {
           document.location.reload(true);
         }
       })
@@ -66,20 +71,48 @@ function getCommentTodelete(data, span2) {
 
 function getEditTodelete(data, span3) {
   span3.addEventListener("click", function() {
-    alert(data.id)
-  })
+    editCard.classList.toggle("editCard");
+    editCommentId = data.id;
+    editForm.edit.value = data.comment;
+    editCard.style.width = "40%";
+    editCard.style.margin = "0 auto";
+  });
 }
 
-function handleImageUpload() 
-{
-let image = document.getElementById("upload").files[0];
+const onSubmitEdit = e => {
+  e.preventDefault();
+  const editComment = {};
+  editComment.comment = editForm.edit.value;
+  editCommentApi(JSON.stringify(editComment));
+  return addComment;
+};
+editForm.addEventListener("submit", onSubmitEdit, false);
 
-    var reader = new FileReader();
+function editCommentApi(data) {
+  let editUrl =
+    baseUrl + `${editCommentId}` + "/comments/" + `${editCommentId}`;
+  console.log(editUrl);
+  fetch(editUrl, {
+    method: "PUT",
+    body: data
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
 
-    reader.onload = function(e) {
-      document.getElementById("display-image").src = e.target.result;
-    }
+function handleImageUpload() {
+  let image = document.getElementById("upload").files[0];
 
-    reader.readAsDataURL(image);
+  var reader = new FileReader();
 
-} 
+  reader.onload = function(e) {
+    document.getElementById("display-image").src = e.target.result;
+  };
+
+  reader.readAsDataURL(image);
+}
